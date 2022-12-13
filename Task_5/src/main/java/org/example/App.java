@@ -3,10 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class App
 {
@@ -50,18 +47,18 @@ public class App
                 instructions.add(rr);
             }
 
-            arr.get(1).getBox();
+            Stack<Character> crane = new Stack<Character>();
 
             for(int i = 0; i < instructions.size(); i++){
                 int amount = instructions.get(i).get(0);
                 int from = instructions.get(i).get(1);
                 int to = instructions.get(i).get(2);
 
-                System.out.println(arr.get(from-1).toStringy());
-                System.out.println(arr.get(to-1).toStringy());
-
+                for(int j = 0; j < amount; j++){
+                   crane.push(arr.get(from - 1).getBox());
+                }
                 while (amount > 0) {
-                    arr.get(to - 1).setBox(arr.get(from - 1).getBox());
+                    arr.get(to - 1).setBox(crane.pop());
                     amount--;
                 }
 
